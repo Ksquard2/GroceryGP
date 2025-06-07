@@ -26,6 +26,8 @@
         <p>Potatos Bread Pasta Rice</p>
       <button type="submit">Submit</button>
     </form>
+    <p id = "noSelect"></p>
+    <p id = "noName"></p>
 <script>
     let foodGroups = [];
     
@@ -44,18 +46,24 @@
     form = document.getElementById("form")
     form.addEventListener('submit',(event) =>{
         event.preventDefault();
-        if (foodGroups.length > 0) {
-            var customer = document.getElementById("name")
-            var survey = {
-                Name: customer.value,
-                Foods: foodGroups  
+        if (foodGroups.length > 0 && document.getElementById("name").value.length > 0) {
+            if (typeof(Storage) !== "undefined") {
+                //Gathers survey data
+                localStorage.setItem("name", document.getElementById("name").value);
+                localStorage.setItem("foodGroups", foodGroups)
+                //sends to the purchasing page
+                location.href = "purchasing.html"
             }
-            console.log("You selected:", survey);
-        } 
-        else 
+        } 
+        else
         {
-          console.log("Please pick a rating.");
-        }
+            if(foodGroups.length == 0){
+                document.getElementById("noSelect").innerHTML = "Please pick a food"
+            }
+            if(document.getElementById("name").value.length == 0){
+                document.getElementById("noName").innerHTML = "Please pick your name"
+            }
+        }
     }); 
 </script>
  </body>
