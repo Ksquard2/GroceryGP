@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>page 1</title>
+ </head>
+ <body>
+    <form id = "form">
+    <label>Name: <input type = "text" id="name"></label>
+      <h4>Protien:</h4>
+        <input type="checkbox" value="Chicken">
+        <input type="checkbox" value="Beef">
+        <input type="checkbox" value="Fish">
+        <input type="checkbox" value="Beans">
+        <p>Chicken Beef Fish Beans</p>
+        <h4>Veggies:</h4>
+        <input type="checkbox" value="Broccoli">
+        <input type="checkbox" value="Carrots">
+        <input type="checkbox" value="Lettuce">
+        <input type="checkbox" value="Tomatos">
+        <p>Broccoli Carrots Lettuce Tomatos</p>
+        <h4>Carbohydrates:</h4>
+        <input type="checkbox" value="Potatos">
+        <input type="checkbox" value="Bread">
+        <input type="checkbox" value="Pasta">
+        <input type="checkbox" value="Rice">
+        <p>Potatos Bread Pasta Rice</p>
+      <button type="submit">Submit</button>
+    </form>
+<script>
+    let foodGroups = [];
+    
+    // Add event listeners to all checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                foodGroups.push(this.value);
+            } else {
+                // Remove from array when unchecked
+                foodGroups = foodGroups.filter(value => value !== this.value);
+            }
+            console.log("Current selections:", foodGroups);
+        });
+    });
+    form = document.getElementById("form")
+    form.addEventListener('submit',(event) =>{
+        event.preventDefault();
+        if (foodGroups.length > 0) {
+            var customer = document.getElementById("name")
+            var survey = {
+                Name: customer.value,
+                Foods: foodGroups  
+            }
+            console.log("You selected:", survey);
+        } 
+        else 
+        {
+          console.log("Please pick a rating.");
+        }
+    }); 
+</script>
+ </body>
+</html>
