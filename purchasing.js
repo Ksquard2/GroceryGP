@@ -6,4 +6,4 @@ function received() {
             foodGroups = localStorage.getItem("foodGroups")
             console.log("Retrieved successfully",name,foodGroups)
         }
-    }
+}
