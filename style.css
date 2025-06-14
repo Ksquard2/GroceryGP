@@ -1,0 +1,92 @@
+*{
+    background-color:rgb(250, 245, 240);;
+}
+.header-container {
+    display: flex;
+    background-color: grey;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+
+.header-container h1 {
+    margin: 0;
+
+    flex: 1;
+}
+
+form#form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+form#form > label, 
+form#form > button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+.protien, .veggies, .carbs {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px; 
+    justify-items: center; 
+}
+
+.food-item {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    text-align: right; 
+    margin: 0;
+    width: 75%;
+}
+
+.food-item img {
+    max-width: 100%;
+
+    object-fit: cover;
+}
+.food-item label {
+    margin: 5px 0;
+    text-align: right;
+    width: 100%;
+}
+label {
+    background-color: grey;
+    display: block;
+    margin: 5px 0;
+    text-align: center;
+    width: 100%;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+.protien h4, .veggies h4, .carbs h4 {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+}

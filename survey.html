@@ -2,43 +2,89 @@
 <html>
  <head>
     <title>page 1</title>
+    <link rel="stylesheet" href="style.css">
  </head>
  <body>
   
-    <form id = "form">
-    <label>Name: <input type = "text" id="name"></label>
-      <h4>Protien:</h4>
-        <input type="checkbox" value="Chicken">
-        <input type="checkbox" value="Beef">
-        <input type="checkbox" value="Fish">
-        <input type="checkbox" value="Beans">
-        <p>Chicken Beef Fish Beans</p>
-        <h4>Veggies:</h4>
-        <input type="checkbox" value="Broccoli">
-        <input type="checkbox" value="Carrots">
-        <input type="checkbox" value="Lettuce">
-        <input type="checkbox" value="Tomatos">
-        <p>Broccoli Carrots Lettuce Tomatos</p>
-        <h4>Carbohydrates:</h4>
-        <input type="checkbox" value="Potatos">
-        <input type="checkbox" value="Bread">
-        <input type="checkbox" value="Pasta">
-        <input type="checkbox" value="Rice">
-        <p>Potatos Bread Pasta Rice</p>
-      <button type="submit">Submit</button>
+<div class="header-container">
+        <img src="assets\Colorful Illustrative Organic Grocery Online Shop Logo.JPEG" alt="Logo" width="200" height="200"> 
+        <h1 style="background-color: grey;">Lets Personalize Your Grocery Basket</h1>
+    </div>
+    
+    <form id="form">
+    <label style="background-color: rgb(250, 245, 240);"><input class = "name" placeholder = "Enter Your Name" type="text" id="name"></label>
+        <div class="protien">
+            <h4>Protein:</h4>
+            <br>
+            <div class="food-item">
+                <img src="assets\CHICKEN.JPEG" alt="Chicken" width="200" height="200">
+                <label style="background-color: grey;">Chicken:<input type="checkbox" value="Chicken"></label>
+            </div>
+            <div class="food-item">
+                <img src="assets\BEEF.JPEG" alt="Beef" width="200" height="200">
+                <label>Beef:<input type="checkbox" value="Beef"></label>
+            </div>
+ 
+            <div class="food-item">
+                <img src="assets\HAM.JPEG" alt="Fish" width="200" height="200">
+                <label>Fish:<input type="checkbox" value="Fish"></label>
+            </div>
+            <div class="food-item">
+                <img src="assets\BEANS.JPEG" alt="Tofu" width="200" height="200">
+                <label>Beans:<input type="checkbox" value="Beans"></label>
+            </div>
+        </div>
+        <div class="veggies">
+            <h4>Veggies:</h4>
+            <br>
+            <div class="food-item">
+                <img src="assets\BROC.JPEG" alt="Broccoli" width="200" height="200">
+                <label>Broccoli:<input type="checkbox" value="Broccoli"></label>
+            </div>
+            <div class="food-item">
+                <img src="assets\CARROTS.JPEG" alt="Carrots" width="200" height="200">
+                <label>Carrots:<input type="checkbox" value="Carrots"></label>
+            </div>
+            <div class="food-item">
+                <img src="assets\LETTUCE.JPEG" alt="Lettuce" width="200" height="200">
+                <label>Lettuce:<input type="checkbox" value="Lettuce"></label>
+            </div>
+            <div class="food-item">
+                <img src="assets\TOM.JPEG" alt="Tomatos" width="200" height="200">
+                <label>Tomatos:<input type="checkbox" value="Tomatos"></label>
+            </div>
+        </div>
+        <div class="carbs">
+            <h4>Carbohydrates:</h4>
+            <br>
+            <div class="food-item">
+                <img src="assets\POTATO.JPEG" alt="Potatos" width="200" height="200">
+                <label>Potatos:<input type="checkbox" value="Potatos"></label>
+            </div>
+            <div class="food-item">
+                <img src="assets\BREAD.JPEG" alt="Bread" width="200" height="200">
+                <label>Bread:<input type="checkbox" value="Bread"></label>
+            </div>
+            <div class="food-item">
+                <img src="assets\PASTA.JPEG" alt="Pasta" width="200" height="200">
+                <label>Pasta:<input type="checkbox" value="Pasta"></label>
+            </div>
+            <div class="food-item">
+                <img src="assets\RICE.JPEG" alt="Rice" width="200" height="200">
+                <label>Rice:<input type="checkbox" value="Rice"></label>
+            </div>
+        </div>
+    <br>
+        <button type="submit">Submit</button>
     </form>
-    <p id = "noSelect"></p>
-    <p id = "noName"></p>
 <script>
     let foodGroups = [];
-    
-    // Add event listeners to all checkboxes
+
     document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             if (this.checked) {
                 foodGroups.push(this.value);
             } else {
-                // Remove from array when unchecked
                 foodGroups = foodGroups.filter(value => value !== this.value);
             }
             console.log("Current selections:", foodGroups);
