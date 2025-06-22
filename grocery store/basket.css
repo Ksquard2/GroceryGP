@@ -1,0 +1,207 @@
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fef8f2;
+    color: #2e2e2e;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    background-color: #d3ccc5;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .logo {
+    width: 150px;
+  }
+
+  .title {
+    font-family: 'Cursive', serif;
+    font-size: 2rem;
+    margin: 0.5rem 0;
+  }
+
+  .name-input {
+    margin-top: 1rem;
+  }
+
+  input[type="text"] {
+    padding: 0.5rem;
+    border: 2px dotted #000;
+    font-size: 1rem;
+    width: 250px;
+  }
+
+  .survey {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .category h2 {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .item {
+    text-align: center;
+  }
+
+  .item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .item button {
+    margin-top: 0.5rem;
+    background-color: #aaa093;
+    color: white;
+    padding: 0.4rem 1rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  .inventory {
+    padding: 2rem;
+    background-image: url("/Users/tayjahkyles/Downloads/background .png");
+    background-size: cover;
+    color: #000;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  th, td {
+    padding: 1rem;
+    border: 1px solid #000;
+    text-align: center;
+  }
+
+  .subtotal {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 1rem;
+  }
+
+  .confirmation {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .confirmation table {
+    margin: 0 auto;
+    width: 80%;
+    background-color: #fff;
+  }
+
+  .summary {
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+  .buttons {
+    margin-top: 2rem;
+  }
+
+  .buttons button {
+    background-color: #b58d5a;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    margin: 0 1rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+</style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fef7ed;
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 120px;
+}
+
+.inventory-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.category-section {
+  background: #fffdf7;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.item-card {
+  background: #f8f2e6;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.item-card button {
+  background-color: #ad8655;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cart-section {
+  margin-top: 40px;
+  background-color: #fffef9;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+#cartTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+#cartTable th, #cartTable td {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+#cartTable button {
+  background-color: #e06d6d;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grocery Inventory</title>
+ 
+</head>
+<body>
+
+  <h1>Select Your Groceries</h1>
+
+  <div id="inventoryContainer"></div>
+
+  <div id="cart">
+    <h2 id = "header"></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="cartTableBody"></tbody>
+    </table>
+    <div class="cart-summary">
+      Subtotal: $<span id="cartSubtotal">0.00</span>
+    </div>
+    <a href="confirmation.html" class="confirm-link">Go to Confirmation →</a>
+  </div>
+
+  <script>
+    var catagories = []
+    var name = ""
+    function received() {
+        
+        if (typeof(Storage) !== "undefined") {
+        // Retrieve
+            name = localStorage.getItem("name");
+            document.getElementById("header").innerHTML = name + "'s Cart"
+            const stored = localStorage.getItem("foodGroups");
+            foodGroups = stored ? stored.split(',') : [];
+            console.log("Categories:", foodGroups);
+            for(var i = 0;i < foodGroups.length;i++){
+              catagories.push(foodGroups[i])
+            }
+            console.log("Categories:", catagories);
+        }
+    }
+    
+    
+    const API_URL = "http://127.0.0.1:5000/data";
+    const container = document.getElementById("inventoryContainer");
+    let cart = JSON.parse(localStorage.getItem("cart") || "{}");
+
+    async function fetchInventory(catagories) {
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      console.log(data)
+      displayInventoryByCategory(data,catagories);
+    }
+
+    function displayInventoryByCategory(items, catagories) {
+      catagories.forEach(cat => {
+        const section = document.createElement("div");
+        section.className = "category";
+        const heading = document.createElement("h2");
+        heading.textContent = cat;
+        section.appendChild(heading);
+
+        const group = items.filter(i => i.type === cat).slice(0, 5);
+        const grid = document.createElement("div");
+        grid.className = "inventory-grid";
+
+        group.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "inventory-item";
+          card.innerHTML = `
+            <strong>${item.name}</strong><br/>
+            $${item.price.toFixed(2)}<br/>
+            <button onclick="addToCart('${item.id}', '${item.name}', '${item.type}', ${item.price})">
+              Add to Cart
+            </button>
+          `;
+          grid.appendChild(card);
+        });
+
+        section.appendChild(grid);
+        container.appendChild(section);
+      });
+
+      renderCart();
+    }
+
+    function addToCart(id, name, type, price) {
+      if (cart[id]) {
+        cart[id].qty += 1;
+      } else {
+        cart[id] = { id, name, type, price, qty: 1 };
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeFromCart(id) {
+      if (cart[id]) {
+        cart[id].qty -= 1;
+        if (cart[id].qty <= 0) {
+          delete cart[id];
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+    }
+
+    function renderCart() {
+      const tbody = document.getElementById("cartTableBody");
+      tbody.innerHTML = "";
+      let subtotal = 0;
+
+      for (const item of Object.values(cart)) {
+        const itemTotal = item.qty * item.price;
+        subtotal += itemTotal;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.qty}</td>
+          <td>$${itemTotal.toFixed(2)}</td>
+          <td><button onclick="removeFromCart('${item.id}')">Remove</button></td>
+        `;
+        tbody.appendChild(row);
+      }
+
+      document.getElementById("cartSubtotal").textContent = subtotal.toFixed(2);
+    }
+    received()
+    fetchInventory(catagories);
+  </script>
+
+</body>
+</html>
